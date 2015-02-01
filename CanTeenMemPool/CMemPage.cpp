@@ -92,22 +92,8 @@ namespace CanTeen
 
 		inline bool freeNode( void * node )
 		{
-#ifdef _DEBUG
-			int offset = ((char *)node - (char *)this);
-			offset -= sizeof( CMemPage );
-			if( offset % _blockSize )
-			{
-				return false;
-			}
-			else
-			{
-				_freeNodes[ _freeIndex++ ] = (int)node;
-				return true;
-			}
-#else
 			_freeNodes[ _freeIndex++ ] = (int)node;
 			return true;
-#endif
 		}
 
 		inline CMemPage(int blockSize , int pageSize , void * const start)
